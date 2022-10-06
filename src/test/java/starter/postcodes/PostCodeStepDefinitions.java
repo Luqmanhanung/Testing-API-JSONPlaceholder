@@ -1,5 +1,7 @@
 package starter.postcodes;
 
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
@@ -25,4 +27,6 @@ public class PostCodeStepDefinitions {
         restAssuredThat(response -> response.body(LocationResponse.COUNTRY, equalTo(country)));
         restAssuredThat(response -> response.body(LocationResponse.FIRST_PLACE_NAME, equalTo(placeName)));
     }
+
+
 }
