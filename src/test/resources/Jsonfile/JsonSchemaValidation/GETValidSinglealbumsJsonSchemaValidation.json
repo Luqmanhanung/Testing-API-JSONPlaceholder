@@ -5,20 +5,16 @@
     "userId": {
       "type": "integer"
     },
-    "title": {
-      "type": "string"
-    },
-    "body": {
-      "type": "string"
-    },
     "id": {
       "type": "integer"
+    },
+    "title": {
+      "type": "string"
     }
   },
   "required": [
     "userId",
-    "title",
-    "body",
-    "id"
+    "id",
+    "title"
   ]
 }
