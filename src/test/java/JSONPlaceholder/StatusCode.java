@@ -27,4 +27,10 @@ public class StatusCode {
         SerenityRest.then()
                 .statusCode(statusCode);
     }
+
+    @Then("API should return response {int} No Content")
+    public void apiShouldReturnResponseNoContent(int statusCode) {
+        SerenityRest.then()
+                .statusCode(statusCode);
+    }
 }

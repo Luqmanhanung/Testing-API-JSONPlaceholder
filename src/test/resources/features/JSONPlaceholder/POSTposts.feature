@@ -13,9 +13,10 @@ Feature: POST create posts
     Given post create posts with valid path and empty Request body only one field
     When Send request post create post
     Then API should return response 400 BAD REQUEST
-    Given post create posts with valid path and empty Request body only two field
+
 
   Scenario: POST create posts with valid path and empty Request body only two field
+    Given post create posts with valid path and empty Request body only two field
     When Send request post create post
     Then API should return response 400 BAD REQUEST
 
