@@ -1,0 +1,552 @@
+"Postman Collection   : https://team-3-qe-batch-6-58281.postman.co/workspace/%5BQE-6%5D-TEAM-3~02760221-8303-4faa-8b4f-e46b65b414ef/collection/18701502-8de81cea-2d19-4675-a6bd-b64d99889e16?action=share&creator=18701502 
+Postman Enviroment : Jsonplace
+Base URL                     : https://jsonplaceholder.typicode.com/ 
+Lampiran                     : https://team-3-qe-batch-6-58281.postman.co/workspace/%5BQE-6%5D-TEAM-3~02760221-8303-4faa-8b4f-e46b65b414ef/collection/18701502-8de81cea-2d19-4675-a6bd-b64d99889e16?action=share&creator=18701502 ",,,,,,,,,
+ID,Features,Scenario / Scenario Outline,Background,Steps,Data,Type,Status,Remark,Respon body
+TC1,GET posts article,"GET posts article with valid 
+path","Given Base URL is https://jsonplaceholder.typicode.com/
+And Set method to GET","When set path to posts
+And Click send button
+Then API should return response 200 OK",,(+),PASS,,"{
+        ""userId"": 1,
+        ""id"": 1,
+        ""title"": ""sunt aut facere repellat provident occaecati excepturi optio reprehenderit"",
+        ""body"": ""quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit 
+          molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto""
+    }"
+TC2,,"GET posts article with invalid 
+parameter (int)",,"When set path to posts?<id>
+And Click send button
+Then API should return response 404 Not Found","Example:
+| id |
+|501|",(-),FAIL,,"{
+        ""userId"": 1,
+        ""id"": 1,
+        ""title"": ""sunt aut facere repellat provident occaecati excepturi optio reprehenderit"",
+        ""body"": ""quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit 
+          molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto""
+    }"
+TC3,,"GET posts article with invalid 
+parameter (String)",,"When set path to posts?""<String>""
+And Click send button
+Then API should return response 400 Bad Request","Example:
+| String |
+|wuuff|",(-),FAIL,,"{
+        ""userId"": 1,
+        ""id"": 1,
+        ""title"": ""sunt aut facere repellat provident occaecati excepturi optio reprehenderit"",
+        ""body"": ""quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit 
+          molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto""
+    }"
+TC4,,"GET posts article with invalid 
+id",,"When set path to posts/""<Stringid>""
+And Click send button
+Then API should return response 400 Bad Request","Example:
+| Stringid    |
+| @#$        |
+| wuf          |",(-),PASS,,
+TC5,,"GET posts article with 
+id exceed the limit",,"When set path to posts/<id>
+And Click send button
+Then API should return response 404 Not Found","Example:
+| id | 
+| 400 | 
+| 450 |",(-),PASS,,
+TC6,GET comments article,GET comments all article,,"When  set path to comments
+And  Click send button
+Then API should return 200 OK
+And API should return body data postId, id, name, email, and body",,( + ),PASS,,"{
+        ""postId"": 1,
+        ""id"": 1,
+        ""name"": ""id labore ex et quam laborum"",
+        ""email"": ""Eliseo@gardner.biz"",
+        ""body"": ""laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium""
+    }"
+TC7,,GET comments article with valid id,,"When  set path to comments/<id>
+And  Click send button
+Then API should return 200 OK
+And API should return body data postId, id, name, email, and body","Example:
+| id |
+| 1 |
+| 2 |",( + ),PASS,,"{
+        ""postId"": 1,
+        ""id"": 1,
+        ""name"": ""id labore ex et quam laborum"",
+        ""email"": ""Eliseo@gardner.biz"",
+        ""body"": ""laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium""
+    }"
+TC8,,GET comments article with invalid id,,"When  set path to comments/""<stringID>""
+And  Click send button
+Then API should return 400 Bad Request","Example:
+| stringID |
+| asa |
+| @#$ |",( - ),FAIL,,
+TC9,,GET comments article with id exceed the limit,,"When  set path to comments/<id>
+And  Click send button
+Then API should return 404 Not Found","Example:
+| id |
+| 501 |
+| 502 |",( - ),PASS,,
+TC10,,GET comments article with valid field parameter using id,,"When  set path to comments?postId=<id>
+And  Click send button
+Then API should return 200 OK
+And API should return body data postId, id, name, email, and body","Example:
+| id |
+| 1 |
+| 2 |",( + ),PASS,,"{
+        ""postId"": 1,
+        ""id"": 2,
+        ""name"": ""quo vero reiciendis velit similique earum"",
+        ""email"": ""Jayne_Kuhic@sydney.com"",
+        ""body"": ""est natus enim nihil est dolore omnis voluptatem numquam\net omnis occaecati quod ullam at\nvoluptatem error expedita pariatur\nnihil sint nostrum voluptatem reiciendis et""
+    }"
+TC11,GET albums,Get list albums ,,"When  set path to albums
+And  Click send button
+Then API should return 200 OK
+And API should return body data userId, id and title",,( + ),PASS,,"{
+    ""userId"": 1,
+    ""id"": 1,
+    ""title"": ""quidem molestiae enim""
+}"
+TC12,,Get single album with valid id,,"When  set path to albums/<id>
+And  Click send button
+Then API should return 200 OK
+And API should return body data userId, id and title","Example:
+| id |
+| 1 |
+| 2 |",( + ),PASS,,"{
+    ""userId"": 1,
+    ""id"": 1,
+    ""title"": ""quidem molestiae enim""
+}"
+TC13,,Get single album with invalid id,,"When  set path to albums/""<string>""
+And  Click send button
+Then API should return 400 Bad Request
+","Example:
+| string |
+| asa |
+| @#$ |",( - ),FAIL,,
+TC14,,Get single album with id exceed the limit,,"When  set path to albums/<id>
+And  Click send button
+Then API should return 404 Not Found
+","Example:
+| id |
+| 101 |
+| 102 |",( - ),PASS,,
+TC15,,Get single album with valid parameter ,,"When  set path to albums?title=<title>
+And  Click send button
+Then API should return 200 OK
+And API should return body data userId, id and title","Example:
+| title |
+| omnis laborum odio |
+| eaque aut omnis a |",( + ),PASS,,"[
+    {
+        ""userId"": 1,
+        ""id"": 5,
+        ""title"": ""eaque aut omnis a""
+    }
+]"
+TC16,POST posts article,POST posts with valid path and empty Request body only one field,"Given Base URL is https://jsonplaceholder.typicode.com/
+And Set method to POST","When set path to posts/
+And Set request body name is ""<title>"" and ""<body>""
+And Click send button
+Then API should return response 400 Bad Request","Example:
+| title | body |
+| Sed ut perspiciatis unde omnis iste natus error sit voluptatem | Li Europan lingues es membres del sam familie. Lor separat |
+| È universalmente riconosciuto che un lettore | normale blocco di testo leggibile |",( - ),FAIL,"Or you can using this Json
+{
+    ""title"": ""Sed ut perspiciatis unde omnis iste natus error sit voluptatem "",
+    ""body"": ""Li Europan lingues es membres del sam familie. Lor separat ""
+}",
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+TC17,,POST posts with valid path and empty request body only two field,,"When set path to posts/
+And Set request body name is ""<title>"" 
+And Click send button
+Then API should return response 400 Bad Request","Example:
+| title |
+| Sed ut perspiciatis unde omnis iste natus error sit voluptatem |
+| È universalmente riconosciuto che un lettore | ",( - ),FAIL,"Or you can using this Json
+{
+""title"": ""Sed ut perspiciatis unde omnis iste natus error sit voluptatem "",
+    ""body"": ""Li Europan lingues es membres del sam familie. Lor separat ""
+}",
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+TC18,,POST posts with valid path and invalid all Request body ,,"When set path to posts/
+And Set request body name is ""<title>"", ""<body>"", <user id>
+And Click send button
+Then API should return response 400 Bad Request","Example:
+| title | body | user id |
+|         |          |               |",( - ),FAIL,"Or you can using this Json
+{
+    ""userId"": ,
+    ""title"": "" "",
+    ""body"": "" ""
+}",
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+TC19,,POST posts with valid path and valid all data,,"When set path to posts/
+And Set request body name is ""<title>"", ""<body>"", and <user id>
+And Click send button
+Then API should return response 201 Created
+And API should return body data user id,  title, and body","Example:
+| title | body | user id |
+| Sed ut perspiciatis unde omnis iste natus error sit voluptatem | Li Europan lingues es membres del sam familie. Lor separat | 2 |
+| È universalmente riconosciuto che un lettore | normale blocco di testo leggibile | 3 |",( + ),PASS,"Or you can using this Json
+{
+    ""userId"": 2,
+    ""title"": ""Sed ut perspiciatis unde omnis iste natus error sit voluptatem "",
+    ""body"": ""Li Europan lingues es membres del sam familie. Lor separat ""
+}","{
+    ""userId"": 2,
+    ""id"": 101,
+    ""title"": ""Sed ut perspiciatis unde omnis iste natus error sit voluptatem "",
+    ""body"": ""Li Europan lingues es membres del sam familie. Lor separat ""
+}"
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+TC20,,POST posts with invalid path ,,"When set path to post/
+And Set request body name is ""<title>"", ""<body>"", and <user id>
+And Click send button
+Then API should return response 400 Bad request","Example:
+| title | body | user id |
+| Sed ut perspiciatis unde omnis iste natus error sit voluptatem | Li Europan lingues es membres del sam familie. Lor separat | 2 |
+| È universalmente riconosciuto che un lettore | normale blocco di testo leggibile | 3 |",( - ),FAIL,"Or you can using this Json
+{
+    ""userId"": 2,
+    ""title"": ""Sed ut perspiciatis unde omnis iste natus error sit voluptatem "",
+    ""body"": ""Li Europan lingues es membres del sam familie. Lor separat ""
+}",
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+TC21,POST comments article,POST comments with valid path and empty Request body only two field,,"When set path to comments/
+And Set request body name is ""<name>""  and email is ""<email>""
+And Click send button
+Then API should return response 400 Bad Request","Example:
+| name | email |
+| Budi | budi@email.com |
+| Tono | tono@email.com |",( - ),FAIL,"Or you can using this Json
+{
+    ""name"": ""Budi "",
+    ""email"": ""budi@email.com ""
+}",
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+TC22,,POST posts with valid path and empty request body only three field,,"When set path to comments/
+And Set request body name is ""<name>"" 
+And Click send button
+Then API should return response 400 Bad Request","Example:
+| name | 
+| Budi | 
+| Tono | ",( - ),FAIL,"Or you can using this Json
+{
+    ""name"": ""Budi ""
+}",
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+TC23,,POST posts with valid path and invalid all Request body ,,"When set path to comments/
+And Set request body name is ""<name>"", email is ""<email>"", body is ""<body>"", post id is <post id>
+And Click send button
+Then API should return response 400 Bad Request","| name | email | body | post id |
+|           |           |         |             |",( - ),FAIL,"Or you can using this Json
+{
+    ""name"": """",
+    ""email"": "" "",
+    ""body"": "" "",
+    ""postId"": "" ""
+}",
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+TC24,,POST comments with valid path and valid all data,,"When set path to comments/
+And Set request body name is ""<name>"", email is ""<email>"", body is ""<body>"", post id is <post id>
+And Click send button
+Then API should return response 201 Created
+And API should return body data post id, id, name, email and body ","| name | email | body | post id |
+| tono | tono@email.com | hallo semua | 4 |
+| deni | deni@email.com | selamat pagi | 6 |    ",( + ),PASS,"Or you can using this Json
+{
+    ""name"": ""tono"",
+    ""email"": "" tono@email.com"",
+    ""body"": "" hallo semua "",
+    ""postId"": "" 4 ""
+}","{
+    ""userId"": 3,
+    ""name"": ""id labore ex et quam laborum"",
+    ""email"": ""coba@email.com"",
+    ""body"": ""blabla"",
+    ""id"": 501
+}"
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+TC25,,POST comments with invalid path ,,"When set path to comment/
+And Set request body name is ""<name>"", email is ""<email>"", body is ""<body>"", post id is <post id>
+And Click send button
+Then API should return response 400 Bad Request","| string | name | email | body | post id |
+| sdfk | tono | tono@email.com | hallo semua | 4 |
+| @$@ | deni | deni@email.com | selamat pagi | 6 |    ",( - ),FAIL,"Or you can using this Json
+{
+    ""name"": ""tono"",
+    ""email"": "" tono@email.com"",
+    ""body"": "" hallo semua "",
+    ""postId"": "" 4 ""
+}",
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+TC26,,POST comments with valid path and empty Request body only one field,,"When set path to comments/
+And Set request body name is ""<name>"", email is ""<email>"", body is ""<body>""
+And Click send button
+Then API should return response 400 Bad Request","| name | email | body | 
+| tono | tono@email.com | hallo semua | 
+| deni | deni@email.com | selamat pagi |",( - ),FAIL,"Or you can using this Json
+{
+    ""name"": ""tono"",
+    ""email"": "" tono@email.com"",
+    ""body"": "" hallo semua ""
+}",
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+TC27,PUT update article,"PUT with valid request body
+and valid path","Given Base URL is https://jsonplaceholder.typicode.com/
+And Set method to PUT","When set path to posts/1
+And Set request body name is ""<title>"" and ""<body>""
+And Click send button
+Then API should return response 200 OK","Example:
+| tittle | body |
+| ANTARTIKA | BULAN | ",(+),PASS,"Or you can using this Json
+{
+    ""title"": ""ANTARTIKA"",
+    ""body"": ""BULAN ""
+}","{
+    ""userId"": 3,
+    ""id"": 1,
+    ""title"": ""ANTARTIKA"",
+    ""body"": ""BULAN""
+}"
+TC28,,"PUT with invalid body id and 
+userId ",,"When set path to posts/1
+And Set request body name is ""<userId>"" and ""<id>""
+And Click send button
+Then API should return response 400 Bad Request","Example:
+| userId | id |
+| 200 | 101  |",(-),FAIL,"Or you can using this Json
+{
+    ""userId"": ""200"",
+    ""id"": ""101""
+}","{
+    ""userId"": 200,
+    ""id"": 1,
+    ""title"": ""ANTARTIKA"",
+    ""body"": ""BULAN""
+}"
+TC29,,PUT with empty tittle ,,"When set path to posts/1
+And Set request body name is ""<tittle>"" and ""<body>""
+And Click send button
+Then API should return response 400 Bad Request","Example:
+| tittle | body |
+|       | BULAN | ",(-),FAIL,"Or you can using this Json
+{
+    ""title"": "" "",
+    ""body"": ""BULAN ""
+}","{
+    ""userId"": 1,
+    ""id"": 2,
+    ""title"": """",
+    ""body"": ""BULAN""
+}"
+TC30,,PUT with empty body,,"When set path to posts/1
+And Set request body name is ""<tittle>"" and ""<body>""
+And Click send button
+Then API should return response 400 Bad Request","Example:
+| tittle | body      |
+| ANTARTIKA |  | ",(-),FAIL,"Or you can using this Json
+{
+    ""title"": ""ANTARTIKA"",
+    ""body"": "" ""
+} ","{
+    ""userId"": 3,
+    ""id"": 1,
+    ""title"": ""ANTARTIKA"",
+    ""body"": """"
+}"
+TC31,,PUT without tittle ,,"When set path to posts/1
+And Set request body name is ""<body>""
+And Click send button
+Then API should return response 400 Bad Request","Example:
+  | body |
+  | BULAN |",(-),FAIL,"Or you can using this Json
+{
+    ""body"": ""BULAN ""
+}","{
+    ""userId"": 3,
+    ""id"": 1,
+    ""body"": ""BULAN""
+}"
+TC32,,PUT without body,,"When set path to posts/1
+And Set request body name is ""<tittle>""
+And Click send button
+Then API should return response 400 Bad Request","Example:
+| tittle |
+| ANTARTIKA |   ",(-),FAIL,"Or you can using this Json
+{
+    ""title"": ""ANTARTIKA""  
+}","{
+    ""userId"": 3,
+    ""id"": 1,
+    ""title"": ""ANTARTIKA""
+}"
+TC33,,PUT without id ,,"When set path to posts/1
+And Set request body name is ""<id>"" and ""<userId>"" 
+And Click send button
+Then API should return response 404 Not Found","Example:
+| userId |
+| 3 |",(-),FAIL,"Or you can using this Json
+{
+    ""userId"": "" 3 ""
+}","SyntaxError: Unexpected string in JSON at position 24
+    at JSON.parse (<anonymous>)
+    at parse (/app/node_modules/body-parser/lib/types/json.js:89:19)
+    at /app/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/app/node_modules/body-parser/node_modules/raw-body/index.js:224:16)
+    at done (/app/node_modules/body-parser/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/app/node_modules/body-parser/node_modules/raw-body/index.js:273:7)
+    at IncomingMessage.emit (node:events:539:35)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)"
+TC34,,PUT without id and userId,,"When set path to posts/1
+And Set request delete id and userId     
+And Click send button
+Then API should return response 404 Not Found",,(-),FAIL,,
+TC35,PATCH posts articel,PATCH posts with valid id,"Given Base URL is https://jsonplaceholder.typicode.com/
+And Set Method PATCH","When set path to posts/<id>
+And Set request body name is ""<title>""  and  ""<body>""
+And Click send button
+Then API should return response 200 OK
+And API should return body data user id, id, title, and body
+
+","Example :
+| id | title | body |
+| 1 | Testing update | Cobain testing artikel |
+| 2 | Update testing | Cobain artikel testing |",( + ),PASS,"Or you can using this Json
+{
+    ""title"": ""Testing update"",
+    ""body"": ""Cobain testing artikel""
+}","{
+    ""userId"": 1,
+    ""id"": 1,
+    ""title"": ""Testing update"",
+    ""body"": ""Cobain testing artikel""
+}"
+TC36,,PATCH posts with invalid id,,"When set path to posts/""<stringID>""
+And Set request body name is ""<title>""  and  ""<body>""
+And Click send button
+Then API should return response 400 Bad Request
+
+
+","Example :
+| stringID | title | body |
+| asa | Testing update | Cobain testing artikel |
+| @#$ | Update testing | Cobain artikel testing |",( - ),FAIL,"Or you can using this Json
+{
+    ""title"": ""Testing update"",
+    ""body"": ""Cobain testing artikel""
+}",
+TC37,,PATCH posts with id exceed the limit,,"When set path to posts/<id>
+And Set request body name is ""<title>""  and  ""<body>""
+And Click send button
+Then API should return response 400 Bad Request
+
+
+","Example :
+| id | title | body |
+| 101 | Testing update | Cobain testing artikel |
+| 102 | Update testing | Cobain artikel testing |",( - ),FAIL,"Or you can using this Json
+{
+    ""title"": ""Testing update"",
+    ""body"": ""Cobain testing artikel""
+}",
+TC38,,PATCH posts with all valid data,,"When set path to posts/<id>
+And Set request body name is  ""<title>""  and  ""<body>""
+And Click send button
+Then API should return response 200 OK
+And API should return body data user id, id, title, and body
+
+","Example :
+| id | title | body |
+| 1 | Testing update | Cobain testing artikel |
+| 2 | Update testing | Cobain artikel testing |",( + ),PASS,"Or you can using this Json
+{
+    ""title"": ""Testing update"",
+    ""body"": ""Cobain testing artikel""
+}","{
+    ""userId"": 1,
+    ""id"": 1,
+    ""title"": ""Testing update"",
+    ""body"": ""Cobain testing artikel""
+}"
+TC39,,PATCH posts with only one field,,"When set path to posts/<id>
+And Set request body name is  ""<body>""
+And Click send button
+Then API should return response 200 OK
+And API should return body data user id, id, title, and body
+
+","Example :
+| id | body |
+| 1 | Cobain testing artikel |
+| 2 | Cobain artikel testing |",( + ),PASS,"Or you can using this Json
+{
+    ""body"": ""Cobain testing artikel""
+}","{
+    ""userId"": 1,
+    ""id"": 1,
+    ""title"": ""sunt aut facere repellat provident occaecati excepturi optio reprehenderit"",
+    ""body"": ""Cobain testing artikel""
+}"
+TC40,DELETE posts article,Delete posts article with valid id,"Given Base URL is https://jsonplaceholder.typicode.com/
+And Set Method DELETE","When set path to posts/<id>
+And Click send button
+Then API should return 204 No Content","Example:
+| id |
+| 1 |
+| 2 |",( + ),FAIL,,
+TC41,,Delete posts with invalid id,,"When set path to posts/""<stringID>""
+And Click send button
+Then API should return 400 Bad Request","Example:
+| stringID |
+| asa |
+| @#$ |",( - ),FAIL,,
+TC42,,Delete posts with id exceed the limit,,"When set path to posts/<id>
+And Click send button
+Then API should return 404 Not Found","Example:
+| id |
+| 101 |
+| 102 |",( - ),FAIL,,
+TC43,DELETE comments article,Delete comments article with valid id,,"When set path to comments/<id>
+And Click send button
+Then API should return 204 No Content","Example:
+| id |
+| 1 |
+| 2 |",( + ),FAIL,,
+TC44,,Delete comments article with invalid id,,"When set path to comments/""<stringID>""
+And Click send button
+Then API should return 400 Bad Request","Example:
+| stringID |
+| asa |
+| @#$ |",( - ),FAIL,,
+TC45,,Delete comments article with id exceed the limit,,"When set path to comments/<id>
+And Click send button
+Then API should return 404 Not Found","Example:
+| id |
+| 501 |
+| 502 |",( - ),FAIL,,
