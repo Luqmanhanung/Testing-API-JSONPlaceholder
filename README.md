@@ -1,4 +1,4 @@
-# Getting started with REST API testing with Serenity and Cucumber 6
+# Group Project Automation Testing API on JSONPlaceholder
 
 This is a simple starter project for Serenity with Cucumber 6 and RestAssured
 
