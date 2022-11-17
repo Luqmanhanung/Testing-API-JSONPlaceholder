@@ -18,7 +18,7 @@ Feature: Get posts
     Scenario Outline: Get posts article invalid path
       Given GET posts article with invalid id "<id>"
       When Send request posts invalid path
-      Then API should return response 400 BAD REQUEST
+      Then API should return response 404 Not Found
       Examples:
       | id      |
       | @#      |
@@ -27,7 +27,7 @@ Feature: Get posts
   Scenario Outline: Get posts article exceed the limit
     Given GET posts article with id exceed the limit <id>
     When Send request posts with id exceed the limit
-    Then API should return response 400 BAD REQUEST
+    Then API should return response 404 Not Found
     Examples:
       | id    |
       | 400   |

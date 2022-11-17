@@ -3,7 +3,7 @@ Feature: Delete posts article
   Scenario Outline: Delete posts article with valid id
     Given Delete posts with valid id <id>
     When Send request delete posts id
-    Then API should return response 204 No Content
+    Then API should return response 200 OK
     Examples:
       |id|
       |1 |

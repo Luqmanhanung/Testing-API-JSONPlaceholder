@@ -25,7 +25,7 @@ Feature: GET comments feature
   Scenario Outline: Get comments with invalid id
     Given Get comments invalid id "<id>"
     When Send request get comments invalid id
-    Then API should return response 400 BAD REQUEST
+    Then API should return response 404 Not Found
     Examples:
     | id  |
     | asa |

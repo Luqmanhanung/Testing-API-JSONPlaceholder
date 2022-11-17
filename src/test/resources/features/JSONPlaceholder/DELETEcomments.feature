@@ -3,7 +3,7 @@ Feature: Delete comments article
   Scenario Outline: Delete comments article with valid id
     Given Delete comments with valid id <id>
     When Send request delete comments id
-    Then API should return response 204 No Content
+    Then API should return response 200 OK
     Examples:
     |id|
     |1 |
@@ -24,5 +24,5 @@ Feature: Delete comments article
     Then API should return response 404 Not Found
     Examples:
     |id|
-    |501|
-    |502|
+    |1001|
+    |5023|

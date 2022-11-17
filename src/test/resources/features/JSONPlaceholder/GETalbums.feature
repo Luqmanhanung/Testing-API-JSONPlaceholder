@@ -20,7 +20,7 @@ Feature: GET albums
   Scenario Outline: GET list albums with invalid id
     Given Get single all albums with invalid id "<id>"
     When Send request get single albums
-    Then API should return response 400 BAD REQUEST
+    Then API should return response 404 Not Found
     Examples:
       | id |
       |!#  |

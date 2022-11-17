@@ -28,7 +28,7 @@ Feature: POST create posts
   Scenario: POST create post with invalid path
     Given Post create post with invalid path
     When Send request post invalid create post
-    Then API should return response 400 BAD REQUEST
+    Then API should return response 404 Not Found
 
 
 
