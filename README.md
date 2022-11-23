@@ -4,6 +4,8 @@
   </a>
 
   <p align="center">
+    API Automation Testing Project
+    <br />
     Group Project Program Immersive Alterra Academy
     <br />
     <a href="https://jsonplaceholder.typicode.com/"><strong>| Open API Documentation |</strong></a>
